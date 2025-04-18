@@ -504,8 +504,13 @@ async def fetch_auction_config_from_tonapi(
     """
     try:
         # First check if "Ownership History" doesn't exist in the HTML
-        if "Ownership History" not in html_content:
-            logger.debug(f"No ownership history found for {username}, querying TONAPI")
+        if "Ownership History" in html_content:
+            return None
+
+        elif len(username) == 4:
+            return None
+
+        else:
 
             # Step 1: Get account address from tonapi.io DNS endpoint
             dns_url = f"https://tonapi.io/v2/dns/{username}.t.me"
