@@ -509,7 +509,6 @@ async def fetch_auction_config_from_tonapi(
 
             # Step 1: Get account address from tonapi.io DNS endpoint
             dns_url = f"https://tonapi.io/v2/dns/{username}.t.me"
-            logger.debug(f"Requesting DNS info from: {dns_url}")
 
             async with aiohttp.ClientSession() as session:
                 async with session.get(dns_url) as response:
@@ -517,6 +516,7 @@ async def fetch_auction_config_from_tonapi(
                         logger.warning(
                             f"Failed to get DNS info from TONAPI: {response.status}"
                         )
+                        logger.debug(f"DNS response for {username}: {response.text}")
                         return None
 
                     dns_data = await response.json()
