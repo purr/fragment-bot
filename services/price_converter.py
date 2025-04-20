@@ -34,7 +34,7 @@ def format_number(number: float, decimal_places: int = DEFAULT_DECIMAL_PLACES) -
 def process_number_input(query: str) -> float:
     """Process numeric input, replacing commas with periods"""
     # Replace commas with periods for float conversion
-    processed = query.replace(",", ".")
+    processed = query.replace(",", "")
     try:
         return float(processed)
     except ValueError:
